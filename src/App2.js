@@ -4,13 +4,13 @@ import { Container } from 'reactstrap';
 import NavBar from './NavBar';
 import ErrorMessage from './ErrorMessage';
 import Welcome from './Welcome';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import * as Msal from "msal";
 import 'bootstrap/dist/css/bootstrap.css';
 import { config } from './Config';
-import './App.css';
+
 import { getUserDetails } from './GraphService';
-import CalendarComponent from './Calender';
+import Calendar from './Calender';
 
 var msalInstance
 class App extends Component  {
@@ -62,55 +62,58 @@ class App extends Component  {
   }
 
   logout=()=> {
-    msalInstance.logout().redirectUri(config.redirectUri);
+    msalInstance.logout().redirectUri("http://localhost:3000");
   }
 
-  getAccessToken=async (scopes)=>{
-    console.log(scopes);
-    try {
-      
-      var tokenRequest = {
-        scopes: scopes
-    };
-      msalInstance.acquireTokenSilent(tokenRequest)
-      .then(response => {
-          
-          console.log(response.accessToken)
-          this.setState({
-            token:response.accessToken
-          },()=>this.fetchUserDetailsFromToken())
-          
-      })
-      .catch(err => {
-          
-          if (err.name === "InteractionRequiredAuthError") {
-              return msalInstance.acquireTokenPopup(tokenRequest)
-                  .then(response => {
-                      
-                      return response.accessToken;
-
-                  })
-                  .catch(err => {
-                      
-                      console.log(err);
-                  });
-          }
-      });
-
-    } catch (err) {
-      console.log(err);
-      
-      if (this.isInteractionRequired(err)) {
-        
-        var interactiveResult = msalInstance.acquireTokenPopup({
-          scopes: scopes
-        });
-
-        return interactiveResult.accessToken;
-      } else {
-        throw err;
-      }
+  getAccessToken= (scopes)=>{
+    var tokenRequest = {
+      scopes: scopes
     }
+    console.log(scopes);
+    // try {
+      
+      
+    // };
+     return msalInstance.acquireTokenSilent(tokenRequest);
+      // .then(response => {
+          
+      //     console.log(response.accessToken)
+      //     this.setState({
+      //       token:response.accessToken
+      //     },()=>this.fetchUserDetailsFromToken())
+      // return response.accessToken; 
+      // })
+     
+      // .catch(err => {
+          
+      //     if (err.name === "InteractionRequiredAuthError") {
+      //         return msalInstance.acquireTokenPopup(tokenRequest)
+      //             .then(response => {
+                      
+      //                 return response.accessToken;
+
+      //             })
+      //             .catch(err => {
+                      
+      //                 console.log(err);
+      //             });
+      //     }
+      // });
+
+    // } catch (err) {
+    //   console.log(err);
+      
+    //   if (this.isInteractionRequired(err)) {
+        
+    //     var interactiveResult = msalInstance.acquireTokenPopup({
+    //       scopes: scopes
+    //     });
+
+    //     return interactiveResult.accessToken;
+    //   } else {
+    //     throw err;
+    //   }
+    // }
   }
 
 fetchUserDetailsFromToken =async()=>{
@@ -141,16 +144,44 @@ fetchUserDetailsFromToken =async()=>{
     }
 }
 
-setErrorMessage=(message, debug)=> {
+setErrorMessage(message, debug) {
   this.setState({
     error: {message: message, debug: debug}
   });
 }
 
   getUserProfile=async()=> {
-    this.getAccessToken(config.scopes);
+   // this.getAccessToken(config.scopes);
     
+    // let response  = await this.getAccessToken(config.scopes);
+    // this.setState({
+    //   token:response.accessToken
+    // })
+    this.getAccessToken(config.scopes)
+    .then(res=>{
+      this.setState({
+        token: res.accessToken
+      },()=>this.fetchUserDetailsFromToken())
+    })
+    .catch(err => {
+      var tokenRequest = {
+        scopes: config.scopes
       }
+      if (err.name === "InteractionRequiredAuthError") {
+          return msalInstance.acquireTokenPopup(tokenRequest)
+              .then(response => {
+                  
+                  return response.accessToken;
+
+              })
+              .catch(err => {
+                  
+                  console.log(err);
+              });
+      }
+  });
+    
+  }
   
       normalizeError(error) {
         var normalizedError = {};
@@ -219,7 +250,7 @@ setErrorMessage=(message, debug)=> {
                 render={(props) =>
                   this.state.isAuthenticated ?
                   
-                    <CalendarComponent getAccessToken={this.state.token} setError =  {this.setErrorMessage} /> :
+                    <Calendar getAccessToken={this.state.token} setError =  {this.setErrorMessage} /> :
                     <Redirect to="/" />
                 } />
       </Router>
