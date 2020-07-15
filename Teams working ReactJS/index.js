@@ -1,15 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ViewProfile from './ViewProfile';
-import ActivityView from './Components/ActivityView'
+
 ReactDOM.render(
  
-    // <ViewProfile />
-    <ActivityView/>
+    <ViewProfile />
   ,
   document.getElementById('root')
 );

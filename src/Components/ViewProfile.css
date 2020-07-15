@@ -12,15 +12,6 @@
     
 }
 
-.custom-card-body{
-    height: fit-content !important;
-}
-
-.marks-speedometer{
-    width: inherit;
-    height: 180px !important;
-}
-
 .custom-activity-List:hover{
     overflow: scroll;
     height: 434px;
@@ -223,6 +214,12 @@
     overflow-x: hidden;
     overflow-y: hidden;
 }
+.user-list-activity{
+    overflow: scroll;
+    max-height: 400px;
+    overflow-x : hidden;
+    overflow-y : hidden;
+}
 .myThemesList:hover{
     overflow: scroll;
     height: 500px;
@@ -230,21 +227,10 @@
 }
 
 .custom-Card-User{
-    /* padding-top: 10px; */
-    /* padding-left: 5px; */
-    /* padding-bottom: 10px; */
-    margin-top: 7px;
-    /* background-color: rgb(166, 166, 230); */
-    border: none;
-}
-
-.custom-Card-User-inside{
     padding-top: 10px;
-    padding-left: 15px;
+    padding-left: 5px;
     padding-bottom: 10px;
-    margin-left: 3px; 
-    /* margin-top: 7px; */
-    background-color: white;
+    margin-top: 7px;
 }
 
 .step-custom-ver{
@@ -300,6 +286,7 @@
         justify-content: center;
      }
 }
+
 
 @media only screen and (min-width : 600px) and (max-width : 900px ){
         div div .row .col-5{

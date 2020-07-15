@@ -1,0 +1,96 @@
+.CircularProgressbar{
+    width: 150px;
+}
+
+.cardcustom {
+   color: black;
+   
+  }
+  
+  .cardcustomtotal:hover {
+    background-color:#FE414D;/* #079fff;*/
+    box-shadow: 0 10px 20px rgba(240, 138, 138, 0.19), 2px 20px 20px rgba(0, 0, 0, 0.23);
+    transition-delay: 0.05s;
+    transition-duration: 0.2s;
+    color: white;
+  }
+
+  .cardcustomactive:hover {
+    background-color:#079FFF;/* #079fff;*/
+    box-shadow: 0 10px 20px rgba(240, 138, 138, 0.19), 2px 20px 20px rgba(0, 0, 0, 0.23);
+    transition-delay: 0.05s;
+    transition-duration: 0.2s;
+    color: white;
+  }
+
+  .cardcustominactive:hover {
+    background-color:#B4B4B4;/* #079fff;*/
+    box-shadow: 0 10px 20px rgba(240, 138, 138, 0.19), 2px 20px 20px rgba(0, 0, 0, 0.23);
+    transition-delay: 0.05s;
+    transition-duration: 0.2s;
+    color: white;
+  }
+
+  .tablecustom {
+    color: black;
+    
+    
+   }
+   .tablecustom:hover,tr:hover{
+     background-color: whitesmoke;
+     box-shadow: 0 10px 20px rgba(240, 138, 138, 0.19), 2px 20px 20px rgba(0, 0, 0, 0.23);
+     transition-delay: 0.05s;
+     transition-duration: 100ms;
+     color: black;
+     /* border-bottom:1pt solid red; */
+     /* font-weight: 500;
+     font-size: large; */
+   }
+
+   tr.tablecustom td {
+    border-bottom:1pt solid rgb(202, 202, 202);
+  }
+
+  .Table{
+    margin-left: 15px;
+    margin-right: 15px;
+    width: 95% !important;
+}
+
+.TableHeader{
+    background-color: white; /*rgb(129, 124, 124);*/
+    font-size: 18px;
+    color: black;
+    margin-top: 10px;
+    
+}
+
+.cardCustom{
+    border-radius: 0px!important;
+    align-content: center;
+    text-align: center;
+}
+
+.TdText{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tablecard1{
+   width: 61.5vw;
+   max-height: 500px;
+   overflow: scroll;
+   
+}
+.tablecard1::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Chrome/Safari/Webkit */
+}
+.tableContainer1{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 60vw;
+    
+}
+
